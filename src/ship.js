@@ -1,12 +1,7 @@
 export class Ship {
-  #length
   constructor(length) {
-    this.#length = length;
+    this.length = length;
     this.hits = 0;
-  }
-
-  get length() {
-    return this.#length;
   }
 
   hit() {
@@ -14,6 +9,6 @@ export class Ship {
   }
 
   isSunk() {
-    return this.#length === this.hits;
+    return this.length === this.hits;
   }
 }
