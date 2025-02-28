@@ -11,7 +11,7 @@ export class Gameboard {
     const ship = new Ship(length);
 
     if (ship.direction === 'horizontal') {
-      for (let i = row - 1; i < row - 1 + ship.length; i++) {
+      for (let i = col - 1; i < col - 1 + ship.length; i++) {
         if (this.board[row - 1][i] === null) { 
           this.board[row - 1][i] = ship;
         } else {
@@ -37,5 +37,9 @@ export class Gameboard {
     } else {
       this.misses.add(`${row},${col}`);
     }
+  }
+
+  allShipsSunk() {
+    return this.sunkenShips.length === 5;
   }
 }

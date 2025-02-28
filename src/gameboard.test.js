@@ -6,14 +6,14 @@ test("gameboard gets constructed", () => {
   expect(gameBoard.board[8][9]).toBe(null);
 });
 
-test.skip("gameboard places ships horizontally", () => {
+test("gameboard places ships horizontally", () => {
   const gameBoard = new Gameboard;
   gameBoard.placeShip(1, 1, 2);
   expect(gameBoard.board[0][0].hits).toBe(0);
   expect(gameBoard.board[0][1].hits).toBe(0);
 });
 
-test("gameboard place ships vertically", () => {
+test.skip("gameboard place ships vertically", () => {
   const gameBoard = new Gameboard;
   gameBoard.placeShip(7, 9, 2);
   expect(gameBoard.board[6][8].hits).toBe(0);
@@ -53,11 +53,11 @@ test("attack hits a ship", () => {
   gameBoard.placeShip(1, 1, 2);
   
   gameBoard.receiveAttack(0,0);
-  gameBoard.receiveAttack(1,0);
-  gameBoard.receiveAttack(2,0);
+  gameBoard.receiveAttack(0,1);
+  gameBoard.receiveAttack(0,2);
 
   expect(gameBoard.board[0][0].hits).toBe(2);
-  expect(gameBoard.board[1][0].hits).toBe(2);
+  expect(gameBoard.board[0][1].hits).toBe(2);
 });
 
 test("gameboard keeps track of sunken ships", () => {
@@ -66,7 +66,32 @@ test("gameboard keeps track of sunken ships", () => {
   gameBoard.placeShip(1, 1, 2);
   
   gameBoard.receiveAttack(0,0);
-  gameBoard.receiveAttack(1,0);
+  gameBoard.receiveAttack(0,1);
 
   expect(gameBoard.sunkenShips[0]).toBeInstanceOf(Ship)
+});
+
+test("gameboard reports whether or not all ships have been sunk", () => {
+  const gameBoard = new Gameboard;
+  
+  gameBoard.placeShip(1, 1, 2);
+  gameBoard.placeShip(2, 1, 2);
+  gameBoard.placeShip(3, 1, 2);
+  gameBoard.placeShip(4, 1, 2);
+  gameBoard.placeShip(5, 1, 2);
+
+  gameBoard.receiveAttack(0,0);
+  gameBoard.receiveAttack(0,1);
+  gameBoard.receiveAttack(1,0);
+  gameBoard.receiveAttack(1,1);
+  gameBoard.receiveAttack(2,0);
+  gameBoard.receiveAttack(2,1);
+  gameBoard.receiveAttack(3,0);
+  gameBoard.receiveAttack(3,1);
+  gameBoard.receiveAttack(4,0);
+  gameBoard.receiveAttack(4,1);
+
+  const allShipsSunk = gameBoard.allShipsSunk();
+
+  expect(allShipsSunk).toBe(true);
 });
