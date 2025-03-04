@@ -14,6 +14,8 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  font-family: "Quantico", sans-serif;
+  background-color: #edeff2;
 }
 
 img, picture, video, canvas, svg {
@@ -38,4 +40,143 @@ h1, h2, h3, h4, h5, h6 {
 
 #root, #__next {
   isolation: isolate;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+.header-section {
+  background-color: rgba(189, 194, 203, .5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 210px;
+  width: 1160px;
+}
+
+.message, .title {
+  color: #2f333b;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.player-wrap {
+  display: flex;
+  justify-content: center;
+  width: 1160px;
+}
+
+.players {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+  width: 100%;
+}
+
+.playerHead {
+  font-size: 36px;
+  width: 450px;
+  text-align: center;
+}
+
+.human {
+  color: #3b5343;
+}
+
+.computer {
+  color: #345159;
+}
+
+.main-button {
+  width: 90px;
+  height: 45px;
+  border: none;
+  color: #bacec0;
+  box-shadow: 0 4px 10px grey;
+  background: linear-gradient(rgba(74, 104, 83, .60), rgba(29, 41, 33, .60));
+}
+
+.column-label-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 1160px;
+}
+
+.player-cols {
+  margin-left: 32px;
+}
+
+.column-labels {
+  display: flex;
+  width: 418px;
+  justify-content: space-around;
+}
+
+.gameboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1160px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  max-height: 450px;
+}
+
+.row {
+  display: flex;
+  height: 450px;
+}
+
+.square, .comp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  border: 1px solid rgb(172, 172, 172);
+  width: 450px;
+  border: solid 1px white;
+}
+
+.square {
+  background-color: #bacec0;
+}
+
+.comp {
+  background-color: #b5ccd3;
+}
+
+.ship {
+  background-color: rgba(197, 181, 211, .60);
+}
+
+.row-label, .col-label {
+  font-size: 16px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
 }
