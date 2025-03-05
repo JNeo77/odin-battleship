@@ -1,12 +1,12 @@
 import { Ship } from "./ship.js";
 import { Gameboard } from "./gameboard.js";
-import { Player } from "./player.js";
+import { Player, ComputerPlayer } from "./player.js";
 
 const battleship = (function () {
   const boards = document.querySelector('.board-section');
 
   const player = new Player('player');
-  const computer = new Player('comp');
+  const computer = new ComputerPlayer('comp');
 
   const playerBoard = player.gameboard.render();
   const compBoard = computer.gameboard.render();
@@ -35,5 +35,9 @@ const compSquares = document.querySelectorAll('.comp');
 compSquares.forEach(square => {
   square.addEventListener('click', () => {
     computer.gameboard.receiveAttack(square.dataset.row, square.dataset.col);
+    const { row, col } = computer.generateRandomAttack();
+    setTimeout(() => {
+      player.gameboard.receiveAttack(row, col);
+    }, 250);
   }, { once: true });
 });
