@@ -13,15 +13,16 @@ export class ComputerPlayer extends Player {
     this.attacks = new Set();
   }
 
-  generateRandomAttack() {
-    const row = Math.floor(Math.random() * 10);
-    const col = Math.floor(Math.random() * 10);
-    if (this.attacks.has(`${row},${col}`)) {
-      this.generateRandomAttack();
-    } else {
-      this.attacks.add(`${row},${col}`);
-    };
+  getRandomAttack() {
+    let row = Math.floor(Math.random() * 10);
+    let col = Math.floor(Math.random() * 10);
+    
+    while (this.attacks.has(`${row},${col}`)) {
+      row = Math.floor(Math.random() * 10);
+      col = Math.floor(Math.random() * 10);
+    }
 
+    this.attacks.add(`${row},${col}`);
     return { row, col };
   }
 }

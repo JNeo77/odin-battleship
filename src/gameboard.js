@@ -1,4 +1,5 @@
 import { Ship } from "./ship.js";
+import { endGame } from "./index.js";
 
 export class Gameboard {
   constructor(playerType) {
@@ -40,6 +41,7 @@ export class Gameboard {
     }
 
     this.reRender();
+    if (this.allShipsSunk()) setTimeout(() => { endGame(this.playerType) }, 200);
   }
 
   allShipsSunk() {
