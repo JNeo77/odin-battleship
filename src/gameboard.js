@@ -36,7 +36,7 @@ export class Gameboard {
         }
       }
     });
-    console.log(this.board);
+
     this.render();
   }
 
