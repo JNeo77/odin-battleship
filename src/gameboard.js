@@ -116,8 +116,8 @@ export class Gameboard {
     const squares = this.container.querySelectorAll('.square');
     
     squares.forEach(square => {
-      if (this.misses.has(`${square.dataset.row},${square.dataset.col}`)) square.innerHTML = '<img src="img/miss.svg" alt="miss peg">'; 
-      if (this.hits.has(`${square.dataset.row},${square.dataset.col}`)) square.innerHTML = '<img src="img/hit.svg" alt="hit peg">';
+      if (this.misses.has(`${square.dataset.row},${square.dataset.col}`)) square.innerHTML = '<img src="miss.svg" alt="miss peg">'; 
+      if (this.hits.has(`${square.dataset.row},${square.dataset.col}`)) square.innerHTML = '<img src="hit.svg" alt="hit peg">';
     });    
   }
 

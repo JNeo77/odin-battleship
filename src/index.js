@@ -1,3 +1,6 @@
+import './styles.css';
+import './hit.svg';
+import './miss.svg';
 import { Player, ComputerPlayer } from "./player.js";
 
 const battleship = function () {
