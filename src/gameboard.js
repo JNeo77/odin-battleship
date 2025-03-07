@@ -11,23 +11,37 @@ export class Gameboard {
     this.container = document.createElement('div');
   }
 
-  placeShip(row, col, length) {
-
-    const ship = new Ship(length);
+  placeShip() {
+    this.resetBoardData();
+    const shipLengths = [5, 4, 3, 3, 2];
     
-    this.checkIfOccupied(row, col, ship);
+    shipLengths.forEach(length => {
+      const ship = new Ship(length);
+      
+      let row = Math.floor(Math.random() * 10);
+      let col = Math.floor(Math.random() * 10);
+      
+      while(this.isOccupied(row, col, ship)) {
+        row = Math.floor(Math.random() * 10);
+        col = Math.floor(Math.random() * 10);
+      }
 
-    if (ship.direction === 'horizontal') {
-      for (let i = col; i < col + length; i++) {
-        this.board[row][i] = ship;
+      if (ship.direction === 'horizontal') {
+        for (let i = col; i < col + length; i++) {
+          this.board[row][i] = ship;
+        }
+      } else {
+        for (let i = row; i < row + length; i++) {
+          this.board[i][col] = ship;
+        }
       }
-    } else {
-      for (let i = row; i < row + length; i++) {
-        this.board[i][col] = ship;
-      }
-    }
+    });
 
     this.render();
+  }
+
+  resetBoardData() {
+    this.board = Array(10).fill(null).map(() => Array(10).fill(null));
   }
   
   receiveAttack(row, col) {
@@ -48,20 +62,25 @@ export class Gameboard {
     return this.sunkenShips.length === 5;
   }
 
-  checkIfOccupied(row, col, ship) {
+  isOccupied(row, col, ship) {
     if (ship.direction === 'horizontal') {
       for (let i = col; i < col + ship.length; i++) {
-        if (this.board[row][i] !== null) {
-          throw new Error ('Space already occupied by another ship!');
+        const yPosition = this.board[row];
+        const xPosition = yPosition[i];
+        if (xPosition === undefined || this.board[row][i] !== null) {
+          return true;
         }
       }
     } else {
       for (let i = row; i < row + ship.length; i++) {
-        if (this.board[i][col] !== null) { 
-          throw new Error ('Space already occupied by another ship!');
+        const position = this.board[i];
+        if (position === undefined || this.board[i][col] !== null) { 
+          return true;
         }
       }
     }
+
+    return false;
   }
 
   render() {

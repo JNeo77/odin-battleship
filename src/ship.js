@@ -2,7 +2,7 @@ export class Ship {
   constructor(length) {
     this.length = length;
     this.hits = 0;
-    this.direction = 'vertical';
+    this.direction = Math.floor(Math.random() * 2) === 1 ? 'vertical' : 'horizontal';
   }
 
   hit() {

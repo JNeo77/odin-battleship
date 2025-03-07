@@ -14,22 +14,14 @@ const battleship = (function () {
   boards.appendChild(playerBoard);
   boards.appendChild(compBoard);
 
-  player.gameboard.placeShip(0, 0, 5);
-  player.gameboard.placeShip(0, 2, 4);
-  player.gameboard.placeShip(0, 4, 3);
-  player.gameboard.placeShip(0, 6, 3);
-  player.gameboard.placeShip(0, 8, 2);
-
-  computer.gameboard.placeShip(0, 0, 5);
-  computer.gameboard.placeShip(0, 2, 4);
-  computer.gameboard.placeShip(0, 4, 3);
-  computer.gameboard.placeShip(0, 6, 3);
-  computer.gameboard.placeShip(0, 8, 2);
+  player.gameboard.placeShip();
+  computer.gameboard.placeShip();
 
   return { player, computer };
 })();
 
 const { player, computer } = battleship;
+
 const compSquares = document.querySelectorAll('.comp');
 const columnLabels = document.querySelector('.column-label-wrap');
 const mainButton = document.querySelector('.main-button');
@@ -66,11 +58,13 @@ function attackPlayer() {
  player.gameboard.receiveAttack(row, col);
 }
 
-compSquares.forEach(square => {
-  square.addEventListener('click', () => {
-    computer.gameboard.receiveAttack(square.dataset.row, square.dataset.col);
-    setTimeout(() => {
-      attackPlayer();
-    }, 250);
-  }, { once: true });
-});
+function startGame() {
+  compSquares.forEach(square => {
+    square.addEventListener('click', () => {
+      computer.gameboard.receiveAttack(square.dataset.row, square.dataset.col);
+      setTimeout(() => {
+        attackPlayer();
+      }, 250);
+    }, { once: true });
+  });
+}
