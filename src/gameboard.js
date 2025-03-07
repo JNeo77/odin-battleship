@@ -11,7 +11,7 @@ export class Gameboard {
     this.container = document.createElement('div');
   }
 
-  placeShip() {
+  placeShips() {
     this.resetBoardData();
     const shipLengths = [5, 4, 3, 3, 2];
     
@@ -36,7 +36,7 @@ export class Gameboard {
         }
       }
     });
-
+    console.log(this.board);
     this.render();
   }
 

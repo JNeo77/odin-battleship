@@ -65,11 +65,16 @@ h1 {
   color: #2f333b;
 }
 
-.main-section {
+.main-section, .col-section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+.main-section {
+  height: 140px;
 }
 
 .player-wrap {
@@ -100,13 +105,46 @@ h1 {
   color: #345159;
 }
 
-.main-button {
+.game-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.main-button, .play-again-button {
   width: 90px;
   height: 45px;
   border: none;
   color: #bacec0;
   box-shadow: 0 4px 10px grey;
-  background: linear-gradient(rgba(74, 104, 83, .60), rgba(29, 41, 33, .60));
+  background: linear-gradient(rgba(74, 104, 83, .60), rgba(29, 41, 33, 0.6));
+}
+
+button:hover {
+  opacity: .8;
+}
+
+button:active {
+  box-shadow: none;
+  background-color: rgba(29, 41, 33, .60);
+}
+
+.refresh-button {
+  width: auto;
+  padding: 8px 16px;
+  color: #3b5343;
+  font-weight: 500;
+  border: solid 1px #3b5343;
+  box-shadow: 0 4px 10px grey;
+}
+
+.refresh-button:hover {
+  background-color: white;
+}
+
+.refresh-button:active {
+  box-shadow: none;
 }
 
 .column-label-wrap {
@@ -179,4 +217,8 @@ h1 {
   justify-content: center;
   align-items: center;
   margin-right: 5px;
+}
+
+.hidden {
+  display: none;
 }
